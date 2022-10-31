@@ -1,4 +1,4 @@
-# Getting Started
+# Project Bank
 
 ### Reference Documentation
 For further reference, please consider the following sections:
