@@ -1,0 +1,7 @@
+package br.ucsal.bank.helpers;
+
+public enum Acao {
+
+	DEPOSITO, SAQUE, TRANSFERENCIA, TRANSFERENCIA2, EMPRESTIMO, EMPRESTIMO2, EMPRESTIMO3, DIVIDA;
+
+}
