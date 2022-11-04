@@ -14,8 +14,9 @@ public class Emprestimo {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
 	private int numeroSenha;
-	private Double valor;
+	private double valor;
 	private Status emprestimo;
 	//private Conta conta;
 	

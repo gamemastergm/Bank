@@ -10,6 +10,7 @@ import br.ucsal.bank.helpers.StatusConta;
 @Entity
 @Table(name="contaPoupanca")
 public class ContaPoupanca extends Conta {
+	
 	private double limitadorSaque;
 
 	public ContaPoupanca(Long id, String nome, String cpf, String senhaCliente, int idade, String sexo,

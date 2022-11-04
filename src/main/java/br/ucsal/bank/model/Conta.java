@@ -22,6 +22,12 @@ public abstract class Conta extends Cliente {
 	private double dividas;
 	private StatusConta statusConta;
 	
+	
+	
+	public Conta() {
+		super();
+	}
+
 	public Conta(Long id, String nome, String cpf, String senhaCliente, int idade, String sexo, String estadoCivil,
 			String endereco, String telefone, String senhaConta, double saldo, List<String> historico, double dividas,
 			StatusConta statusConta) {

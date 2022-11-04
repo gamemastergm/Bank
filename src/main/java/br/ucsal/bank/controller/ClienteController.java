@@ -43,7 +43,7 @@ public class ClienteController {
 			
 		}
 		model.addAttribute("cliente", cliente);
-		return "/clienteform";
+		return "/register";
 	}
 
 	@PostMapping("/salvar")
@@ -54,7 +54,7 @@ public class ClienteController {
             return "clienteform";
         }
 		clienteRepository.save(cliente); 
-		return "redirect:/cliente";
+		return "redirect:/cliente/list";
 	}
 	
 	
@@ -62,7 +62,7 @@ public class ClienteController {
 	@GetMapping("/delete")
 	public String delete(Long id) {
 		clienteRepository.deleteById(id);
-		return "redirect:/cliente";
+		return "redirect:/cliente/list";
 	}
 
 }

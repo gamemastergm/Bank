@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+<title>Register</title>
+</head>
+<body>
+	<div></div>
+	<h1>Bank</h1>
+	<form class="row g-3" th:action="@{/cliente/salvar}" method="post">
+		<div class="row g-3">
+			<div class="col">
+				<input type="text" class="form-control" placeholder="Nome">
+			</div>
+			<div class="col">
+				<input type="text" class="form-control" placeholder="CPF">
+			</div>
+			<div class="col">
+				<input type="password" class="form-control" id="inputPassword4"
+					placeholder="Senha">
+			</div>
+		</div>
+
+		<div class="row g-3">
+			<div class="col-md-6">
+				<label for="inputAddress" class="form-label">Endereço</label> <input
+					type="text" class="form-control" id="inputAddress"
+					placeholder="R.xxxxxxx">
+			</div>
+			<div class="col-md-6">
+				<label for="inputAddress" class="form-label">Telefone</label> <input
+					type="text" class="form-control" id="inputAddress"
+					placeholder="+55 (XX) 9XXXX-XXXX">
+			</div>
+		</div>
+		<div class="row g-3">
+			<div class="col-md-6">
+				<label for="inputState" class="form-label">Sexo</label> <select
+					id="inputState" class="form-select">
+					<option selected>Choose...</option>
+					<option>Masculino</option>
+					<option>Feminino</option>
+					<option>Outro</option>
+					<option>Prefiro não informar</option>
+				</select>
+			</div>
+			<div class="col-md-6">
+				<label for="inputState" class="form-label">Estado Cívil</label> <select
+					id="inputState" class="form-select">
+					<option selected>Choose...</option>
+					<option>Solteiro(a)</option>
+					<option>Casado(a)</option>
+					<option>Viuvo(a)</option>
+					<option>Divorciado(a)</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-check form-switch">
+			<input class="form-check-input" type="checkbox" role="switch"
+				id="flexSwitchCheckDefault"> <label class="form-check-label"
+				for="flexSwitchCheckDefault">Conta Corrente</label>
+		</div>
+		<div class="form-check form-switch">
+			<input class="form-check-input" type="checkbox" role="switch"
+				id="flexSwitchCheckDefault"> <label class="form-check-label"
+				for="flexSwitchCheckDefault">Conta Poupança</label>
+		</div>
+		<div class="col">
+		<label for="inputPasswordAccount" class="form-label">Senha da Conta</label>
+				<input type="password" class="form-control" id="inputPassword4"
+					placeholder="Senha">
+			</div>
+		<div class="col-12">
+			<button type="submit" class="btn btn-primary">Salvar</button>
+		</div>
+
+	</form>
+</body>
+</html>
