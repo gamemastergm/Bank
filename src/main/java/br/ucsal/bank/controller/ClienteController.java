@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.ucsal.bank.model.Cliente;
+import br.ucsal.bank.model.Conta;
 import br.ucsal.bank.repository.ClienteRepository;
+import br.ucsal.bank.repository.ContaRepository;
 
 @Controller
 @RequestMapping(value = "/cliente")
@@ -24,11 +26,31 @@ public class ClienteController {
 	@Autowired
 	private ClienteRepository clienteRepository;
 	
+	@Autowired
+	private ContaRepository contaRepository;
+	
 	@GetMapping("/list")
 	public String listClientes(Model model) {
 		List<Cliente> clientes = clienteRepository.findAll();
 		model.addAttribute("clientes", clientes);
 		return "/cliente";
+	}
+	
+	@GetMapping("/in")
+	public String inCliente(Model model,@Param(value = "id") Long id) {
+		Optional<Cliente> cliente = clienteRepository.findById(id);
+	       if( cliente.isPresent() ) {
+	            model.addAttribute("clientes", cliente.get());
+	}
+		return "/cliente";
+	}
+	
+	@GetMapping("/login")
+	public String login(Model model, @Param(value = "id") Long id) {
+		Cliente cliente = new Cliente() {
+		};
+		model.addAttribute("cliente", cliente);
+		return "/login";
 	}
 
 	@GetMapping("/form")
@@ -47,14 +69,14 @@ public class ClienteController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(@Valid Cliente cliente, BindingResult bindingResult, Model model) {
+	public String salvar(@Valid Conta conta, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(a -> System.out.print(a));
-            model.addAttribute("clientes", clienteRepository.findAll());
+            model.addAttribute("contas", contaRepository.findAll());
             return "clienteform";
         }
-		clienteRepository.save(cliente); 
-		return "redirect:/cliente/list";
+		contaRepository.save(conta);
+		return "index";
 	}
 	
 	

@@ -16,35 +16,40 @@
 	<div></div>
 	<h1>Bank</h1>
 	<form class="row g-3" th:action="@{/cliente/salvar}" method="post">
+	<input type="hidden" name="id" th:value="*{id}"/> 
 		<div class="row g-3">
 			<div class="col">
-				<input type="text" class="form-control" placeholder="Nome">
+				<input type="text" id="nome" name="nome" th:value="*{nome}" class="form-control" placeholder="Nome" required>
 			</div>
 			<div class="col">
-				<input type="text" class="form-control" placeholder="CPF">
+				<input type="text" id="cpf" name="cpf" th:value="*{cpf}" class="form-control" placeholder="CPF" required>
 			</div>
 			<div class="col">
-				<input type="password" class="form-control" id="inputPassword4"
-					placeholder="Senha">
+				<input type="number" id="idade" name="idade" th:value="*{idade}"  class="form-control" 
+					placeholder="Idade" required>
+			</div>
+			<div class="col">
+				<input type="password" id="senhaCliente" name="senhaCliente" th:value="*{senhaCliente}"  class="form-control" 
+					placeholder="Senha do Usuário" required>
 			</div>
 		</div>
 
 		<div class="row g-3">
 			<div class="col-md-6">
 				<label for="inputAddress" class="form-label">Endereço</label> <input
-					type="text" class="form-control" id="inputAddress"
-					placeholder="R.xxxxxxx">
+					type="text" id="endereco" name="endereco" th:value="*{endereco}" class="form-control" 
+					placeholder="R.xxxxxxx" required>
 			</div>
 			<div class="col-md-6">
 				<label for="inputAddress" class="form-label">Telefone</label> <input
-					type="text" class="form-control" id="inputAddress"
-					placeholder="+55 (XX) 9XXXX-XXXX">
+					type="text" id="telefone" name="telefone" th:value="*{telefone}" class="form-control"
+					placeholder="+55 (XX) 9XXXX-XXXX" required>
 			</div>
 		</div>
 		<div class="row g-3">
 			<div class="col-md-6">
-				<label for="inputState" class="form-label">Sexo</label> <select
-					id="inputState" class="form-select">
+				<label for="inputState"  class="form-label">Sexo</label> <select
+					id="sexo" name="sexo" th:value="*{sexo}" class="form-select" required>
 					<option selected>Choose...</option>
 					<option>Masculino</option>
 					<option>Feminino</option>
@@ -54,7 +59,7 @@
 			</div>
 			<div class="col-md-6">
 				<label for="inputState" class="form-label">Estado Cívil</label> <select
-					id="inputState" class="form-select">
+					id="estadoCivil" name="estadoCivil" th:value="*{estadoCivil}" class="form-select" required>
 					<option selected>Choose...</option>
 					<option>Solteiro(a)</option>
 					<option>Casado(a)</option>
@@ -75,8 +80,8 @@
 		</div>
 		<div class="col">
 		<label for="inputPasswordAccount" class="form-label">Senha da Conta</label>
-				<input type="password" class="form-control" id="inputPassword4"
-					placeholder="Senha">
+				<input type="password" id="senhaConta" name="senhaConta" th:value="*{senhaConta}"  class="form-control" 
+					placeholder="Senha" required>
 			</div>
 		<div class="col-12">
 			<button type="submit" class="btn btn-primary">Salvar</button>

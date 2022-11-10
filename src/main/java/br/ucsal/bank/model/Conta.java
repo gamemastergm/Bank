@@ -13,7 +13,7 @@ import br.ucsal.bank.helpers.StatusConta;
 
 @Entity
 @Table(name="conta")
-public abstract class Conta extends Cliente {
+public class Conta extends Cliente {
 	private String senhaConta;
 	private double saldo;
 	@Column

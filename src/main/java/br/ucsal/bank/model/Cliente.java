@@ -111,5 +111,13 @@ public class Cliente {
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
+
+	@Override
+	public String toString() {
+		return "Cliente [id=" + id + ", nome=" + nome + ", cpf=" + cpf + ", senhaCliente=" + senhaCliente + ", idade="
+				+ idade + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", endereco=" + endereco + ", telefone="
+				+ telefone + "]";
+	}
+	
 	
 }
