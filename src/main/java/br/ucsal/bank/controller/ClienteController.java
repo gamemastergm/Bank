@@ -1,6 +1,5 @@
 package br.ucsal.bank.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.validation.Valid;
@@ -15,8 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.ucsal.bank.model.Cliente;
-import br.ucsal.bank.model.Conta;
+import br.ucsal.bank.model.ContaCorrente;
 import br.ucsal.bank.repository.ClienteRepository;
+import br.ucsal.bank.repository.ContaCorrenteRepository;
 import br.ucsal.bank.repository.ContaRepository;
 
 @Controller
@@ -29,26 +29,29 @@ public class ClienteController {
 	@Autowired
 	private ContaRepository contaRepository;
 	
+	@Autowired
+	private ContaCorrenteRepository contaCorrenteRepository;
+	
 	@GetMapping("/list")
 	public String listClientes(Model model) {
-		List<Cliente> clientes = clienteRepository.findAll();
-		model.addAttribute("clientes", clientes);
+		Optional<Cliente> cliente = clienteRepository.findById(1L);
+		model.addAttribute("clientes", cliente.get());
 		return "/cliente";
 	}
 	
 	@GetMapping("/in")
 	public String inCliente(Model model,@Param(value = "id") Long id) {
-		Optional<Cliente> cliente = clienteRepository.findById(id);
+		/*Optional<Cliente> cliente = clienteRepository.findById(id);
 	       if( cliente.isPresent() ) {
 	            model.addAttribute("clientes", cliente.get());
-	}
+	}*/
 		return "/cliente";
+		//return "/cliente ?id="+id;
 	}
 	
 	@GetMapping("/login")
-	public String login(Model model, @Param(value = "id") Long id) {
-		Cliente cliente = new Cliente() {
-		};
+	public String login(Model model) {
+		ContaCorrente cliente = new ContaCorrente(null, null, null, null, 0, null, null, null, null, null, null, null, null, null, null);
 		model.addAttribute("cliente", cliente);
 		return "/login";
 	}
@@ -69,13 +72,13 @@ public class ClienteController {
 	}
 
 	@PostMapping("/salvar")
-	public String salvar(@Valid Conta conta, BindingResult bindingResult, Model model) {
+	public String salvar(@Valid ContaCorrente conta, BindingResult bindingResult, Model model) {
 		if(bindingResult.hasErrors()) {
             bindingResult.getAllErrors().forEach(a -> System.out.print(a));
             model.addAttribute("contas", contaRepository.findAll());
             return "clienteform";
         }
-		contaRepository.save(conta);
+		contaCorrenteRepository.save(conta);
 		return "index";
 	}
 	

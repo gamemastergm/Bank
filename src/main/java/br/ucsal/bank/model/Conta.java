@@ -15,21 +15,19 @@ import br.ucsal.bank.helpers.StatusConta;
 @Table(name="conta")
 public class Conta extends Cliente {
 	private String senhaConta;
-	private double saldo;
+	private String saldo = "0";
 	@Column
 	@ElementCollection(targetClass=String.class)
 	private List<String> historico;
-	private double dividas;
+	private String dividas= "0";
 	private StatusConta statusConta;
-	
-	
 	
 	public Conta() {
 		super();
 	}
 
 	public Conta(Long id, String nome, String cpf, String senhaCliente, int idade, String sexo, String estadoCivil,
-			String endereco, String telefone, String senhaConta, double saldo, List<String> historico, double dividas,
+			String endereco, String telefone, String senhaConta, String saldo, List<String> historico, String dividas,
 			StatusConta statusConta) {
 		super(id, nome, cpf, senhaCliente, idade, sexo, estadoCivil, endereco, telefone);
 		this.senhaConta = senhaConta;
@@ -47,11 +45,11 @@ public class Conta extends Cliente {
 		this.senhaConta = senhaConta;
 	}
 
-	public double getSaldo() {
+	public String getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(double saldo) {
+	public void setSaldo(String saldo) {
 		this.saldo = saldo;
 	}
 
@@ -63,11 +61,11 @@ public class Conta extends Cliente {
 		this.historico = historico;
 	}
 
-	public double getDividas() {
+	public String getDividas() {
 		return dividas;
 	}
 
-	public void setDividas(double dividas) {
+	public void setDividas(String dividas) {
 		this.dividas = dividas;
 	}
 
@@ -78,5 +76,13 @@ public class Conta extends Cliente {
 	public void setStatusConta(StatusConta statusConta) {
 		this.statusConta = statusConta;
 	}
+
+	@Override
+	public String toString() {
+		return "Conta [senhaConta=" + senhaConta + ", saldo=" + saldo + ", historico=" + historico + ", dividas="
+				+ dividas + ", statusConta=" + statusConta + "]";
+	}
+	
+	
 	
 }

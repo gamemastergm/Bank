@@ -33,8 +33,7 @@ public class ContaController {
 
 	@GetMapping("/form")
 	public String form(Model model, @Param(value = "id") Long id) {
-		Conta conta = new Conta(id, null, null, null, 0, null, null, null, null, null, id, null, id, null) {
-		};
+		Conta conta = new Conta(id, null, null, null, 0, null, null, null, null, null, null, null, null, null);
 		if (id != null) {
 			Optional<Conta> op = contaRepository.findById(id);
 			if (op.isPresent()) {

@@ -9,24 +9,33 @@ import br.ucsal.bank.helpers.StatusConta;
 
 @Entity
 @Table(name="contaPoupanca")
-public class ContaPoupanca extends Conta {
+public class ContaPoupanca extends ContaCorrente {
 	
-	private double limitadorSaque;
+	private String limitadorSaque;
 
+	public ContaPoupanca() {
+		super();
+	}
+	
 	public ContaPoupanca(Long id, String nome, String cpf, String senhaCliente, int idade, String sexo,
-			String estadoCivil, String endereco, String telefone, String senhaConta, double saldo,
-			List<String> historico, double dividas, StatusConta statusConta, double limitadorSaque) {
+			String estadoCivil, String endereco, String telefone, String senhaConta, String saldo,
+			List<String> historico, String dividas, StatusConta statusConta, String status, String limitadorSaque) {
 		super(id, nome, cpf, senhaCliente, idade, sexo, estadoCivil, endereco, telefone, senhaConta, saldo, historico,
-				dividas, statusConta);
+				dividas, statusConta, status);
 		this.limitadorSaque = limitadorSaque;
 	}
 
-	public double getLimitadorSaque() {
+	public String getLimitadorSaque() {
 		return limitadorSaque;
 	}
 
-	public void setLimitadorSaque(double limitadorSaque) {
+	public void setLimitadorSaque(String limitadorSaque) {
 		this.limitadorSaque = limitadorSaque;
+	}
+
+	@Override
+	public String toString() {
+		return "ContaPoupanca [limitadorSaque=" + limitadorSaque + "]";
 	}
 
 }

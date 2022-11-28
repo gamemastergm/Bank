@@ -8,14 +8,35 @@ import javax.persistence.Table;
 import br.ucsal.bank.helpers.StatusConta;
 
 @Entity
-@Table(name="contaCorrente")
+@Table(name="contacorrente")
 public class ContaCorrente extends Conta {
+	private String status;
 
+	public ContaCorrente() {
+		super();
+	}
+	
 	public ContaCorrente(Long id, String nome, String cpf, String senhaCliente, int idade, String sexo,
-			String estadoCivil, String endereco, String telefone, String senhaConta, double saldo,
-			List<String> historico, double dividas, StatusConta statusConta, double limitadorSaque) {
+			String estadoCivil, String endereco, String telefone, String senhaConta, String saldo,
+			List<String> historico, String dividas, StatusConta statusConta, String status) {
 		super(id, nome, cpf, senhaCliente, idade, sexo, estadoCivil, endereco, telefone, senhaConta, saldo, historico,
 				dividas, statusConta);
+		this.status = status;
 	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	@Override
+	public String toString() {
+		return "ContaCorrente [status=" + status + "]";
+	}
+	
+	
 	
 }

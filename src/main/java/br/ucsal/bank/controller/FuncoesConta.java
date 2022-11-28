@@ -23,11 +23,9 @@ public class FuncoesConta {
 	private ContaRepository contaRepository;
 	
 	
-	
 	@PostMapping("/formSacar")
 	public String formSacar(Model model, @Param(value = "id") Long id) {
-		Conta conta = new Conta(id, null, null, null, 0, null, null, null, null, null, id, null, id, null) {
-		};
+		Conta conta = new Conta(id, null, null, null, 0, null, null, null, null, null, null, null, null, null);
 		if (id != null) {
 			Optional<Conta> op = contaRepository.findById(id);
 			if (op.isPresent()) {
@@ -47,8 +45,8 @@ public class FuncoesConta {
             return "contaform";
         }
 		Optional<Conta> cliente = contaRepository.findById(id);
-		double resultado = cliente.get().getSaldo() - conta.getSaldo();
-		cliente.get().setSaldo(resultado);
+		double resultado = Double.parseDouble(cliente.get().getSaldo()) - Double.parseDouble(conta.getSaldo());
+		cliente.get().setSaldo(resultado+"");
 		contaRepository.save(cliente.get()); 
 
 		return "redirect:/cliente/in" + "?id="+ id;
@@ -56,8 +54,7 @@ public class FuncoesConta {
 	
 	@PostMapping("/formDepositar")
 	public String formDepositar(Model model, @Param(value = "id") Long id) {
-		Conta conta = new Conta(id, null, null, null, 0, null, null, null, null, null, id, null, id, null) {
-		};
+		Conta conta = new Conta();
 		if (id != null) {
 			Optional<Conta> op = contaRepository.findById(id);
 			if (op.isPresent()) {
@@ -77,17 +74,16 @@ public class FuncoesConta {
             return "contaform";
         }
 		Optional<Conta> cliente = contaRepository.findById(id);
-		double resultado = cliente.get().getSaldo() + conta.getSaldo();
-		cliente.get().setSaldo(resultado);
+		double resultado = Double.parseDouble(cliente.get().getSaldo()) + Double.parseDouble(conta.getSaldo());
+		cliente.get().setSaldo(resultado+"");
 		contaRepository.save(cliente.get()); 
-
+		
 		return "redirect:/cliente/in" + "?id="+ id;
 	}
 	
 	@PostMapping("/formEmprestar")
 	public String formEmprestar(Model model, @Param(value = "id") Long id) {
-		Conta conta = new Conta(id, null, null, null, 0, null, null, null, null, null, id, null, id, null) {
-		};
+		Conta conta = new Conta();
 		if (id != null) {
 			Optional<Conta> op = contaRepository.findById(id);
 			if (op.isPresent()) {
@@ -107,8 +103,8 @@ public class FuncoesConta {
             return "contaform";
         }
 		Optional<Conta> cliente = contaRepository.findById(id);
-		double resultado = cliente.get().getDividas() + conta.getDividas();
-		cliente.get().setDividas(resultado);
+		double resultado = Double.parseDouble(cliente.get().getDividas()) + Double.parseDouble(conta.getDividas());
+		cliente.get().setDividas(resultado+"");
 		contaRepository.save(cliente.get()); 
 
 		return "redirect:/cliente/in" + "?id="+ id;

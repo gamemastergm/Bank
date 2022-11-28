@@ -118,6 +118,8 @@ public class Cliente {
 				+ idade + ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", endereco=" + endereco + ", telefone="
 				+ telefone + "]";
 	}
+
+
 	
 	
 }
