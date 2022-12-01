@@ -22,29 +22,16 @@ public class Autentication {
 
 	@PostMapping("/in")
 	public String authentication(@Valid ContaCorrente cliente, BindingResult bindingResult, Model model) {
-		System.out.println(cliente.toString());
 		if(bindingResult.hasErrors()) {
 	        bindingResult.getAllErrors().forEach(a -> System.out.print(a));
 	        model.addAttribute("contas", clienteRepository.findAll());
 	        return "redirect:/cliente/login";
 	    }
 		Cliente clienteBackend =clienteRepository.findByCpf(cliente.getCpf());
-		if (cliente.getSenhaCliente() == clienteBackend.getSenhaCliente()) {
-			return "redirect:/cliente/in ?id="+ clienteBackend.getId();
+		if (cliente.getSenhaCliente().equals(clienteBackend.getSenhaCliente())) {
+			return "redirect:/cliente/in?id="+ clienteBackend.getId();
 		}
-
-		return "redirect:/cliente/login";
+		return "/login";
 	}
 
 }
-	/*
-@PostMapping("/salvar")
-public String salvar(@Valid ContaCorrente conta, BindingResult bindingResult, Model model) {
-	if(bindingResult.hasErrors()) {
-        bindingResult.getAllErrors().forEach(a -> System.out.print(a));
-        model.addAttribute("contas", contaRepository.findAll());
-        return "clienteform";
-    }
-	contaCorrenteRepository.save(conta);
-	return "index";
-}*/

@@ -80,10 +80,11 @@
 								</form>
 							</li>
 							<li
-								class="list-group-item d-flex justify-content-between
-								align-items-center p-3">
-								<div class="text-start">
-									<p class="mb-0">Histórico</p>
+								class="list-group-item d-flex justify-content-between align-items-center p-3">
+								<form th:action="@{/funcao/historico?id=1}" method="post">
+									<input type="hidden" name="id" th:value="*{id}" />
+									<div class="text-center">
+									<button type="submit" class="btn btn-primary btn-block mb-4">Histórico</button>
 								</div>
 							</li>
 							<!--  <li
@@ -187,7 +188,17 @@
 									<p class="card-text" th:text="${'R$ ' + cliente.dividas}">Some
 										quick example text to build on the card title and make up the
 										bulk of the card's content.</p>
-									<!--<button type="button" class="btn btn-primary">Button</button>-->
+									<td
+										th:if="${cliente.dividas} != null or ${cliente.dividas} != '0' ? 'true' : 'false'">
+										<form th:action="@{/funcao/formPagarDivida?id=1}"
+											method="post">
+											<input type="hidden" name="id" th:value="*{id}" />
+											<div class="text-center">
+												<button type="submit" class="btn btn-primary btn-block mb-4">Pagar</button>
+											</div>
+										</form>
+								</tr>
+								<!--<button type="button" class="btn btn-primary">Button</button>-->
 								</tr>
 							</div>
 						</div>
@@ -196,10 +207,27 @@
 						<div class="card">
 							<div class="card-body">
 								<h5 class="card-title">Conta Poupança</h5>
-								<p class="card-text" th:text="${'R$ ' + cliente}">Some quick
+								<p class="card-text" th:text="${'R$ ' + poupanca.reserva}">Some quick
 									example text to build on the card title and make up the bulk of
 									the card's content.</p>
-								<!--<button type="button" class="btn btn-primary">Button</button>-->
+								<td th:if="${poupanca.ativa} == 'on'">
+									<form th:action="@{/funcao/formDepositoPoupanca?id=1}"
+										method="post">
+										<input type="hidden" name="id" th:value="*{id}" />
+										<div class="text-center">
+											<button type="submit" class="btn btn-primary btn-block mb-4">Depositar</button>
+										</div>
+									</form>
+								</tr>
+								<td th:if="${poupanca.ativa} == 'on'">
+									<form th:action="@{/funcao/formSacarPoupanca?id=1}"
+										method="post">
+										<input type="hidden" name="id" th:value="*{id}" />
+										<div class="text-center">
+											<button type="submit" class="btn btn-primary btn-block mb-4">Sacar</button>
+										</div>
+									</form>
+								</tr>
 							</div>
 						</div>
 					</div>
